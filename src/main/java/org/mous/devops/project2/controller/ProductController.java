@@ -38,7 +38,7 @@ public class ProductController {
     @PostMapping("/add")
     public ResponseEntity<Product> addProduct(@RequestBody Product product) throws BadRequestException {
         try {
-            // test :-(
+            // test :-:(
             if (product.getName() == null || product.getName().isEmpty()) {
                 throw new BadRequestException("Product name cannot be empty");
             }
