@@ -12,7 +12,7 @@ jobs:
 
     services:
       mysql:
-        image: mysql:latest
+        image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: online_shop
@@ -83,3 +83,5 @@ jobs:
             cd ~/app
             docker compose pull
             docker compose up -d --remove-orphans
+            
+            docker image prune -f

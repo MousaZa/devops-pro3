@@ -14,21 +14,28 @@ services:
     restart: unless-stopped
 
   mysql:
-    image: mysql:latest
+    image: mysql:8.0          # pin to 8.0, NOT latest
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: online_shop
+    command: >
+      --innodb-buffer-pool-size=128M
+      --innodb-log-file-size=32M
+      --max-connections=50
+      --performance-schema=OFF
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-uroot", "-proot"]
+      test: [ "CMD", "mysqladmin", "ping", "-uroot", "-proot" ]
       interval: 10s
       timeout: 5s
       retries: 5
     restart: unless-stopped
+    mem_limit: 384m
+    memswap_limit: 384m
 
 volumes:
   mysql_data:
