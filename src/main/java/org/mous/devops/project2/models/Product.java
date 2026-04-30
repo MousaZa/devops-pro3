@@ -15,7 +15,7 @@ public class Product {
 
     @Column(length = 16)
     private String name;
-
+//
     @Column(length = 16)
     private String supplier;
 
